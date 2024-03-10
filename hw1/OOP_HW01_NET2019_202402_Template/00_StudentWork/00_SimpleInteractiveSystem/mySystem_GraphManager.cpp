@@ -56,6 +56,7 @@ void GRAPH_MANAGER::setCurveType(CURVE_TYPE type)
 		//
 		// implement your own stuff
 		//
+		mCurves[i].setCurveType(type);
 	}
 }
 
@@ -68,6 +69,7 @@ void  GRAPH_MANAGER::setCurves_IntervalOfX(double min_X, int max_X)
 		//
 		// implement your own stuff
 		//
+		mCurves[i].set_IntervalOfX(min_X, max_X);
 	}
 }
 
@@ -80,6 +82,7 @@ void GRAPH_MANAGER::setCurves_D(double d)
 		//
 		// implement your own stuff
 		//
+		mCurves[i].setD(d);
 	}
 }
 
@@ -108,6 +111,9 @@ void GRAPH_MANAGER::decrease_Param_D()
 	//
 	// implement your own stuff
 	//
+	mParam_D = mParam_D - mDelta_D;
+
+	setCurves_D(mParam_D);
 }
 
 //
@@ -119,7 +125,7 @@ double GRAPH_MANAGER::getParam_D() const
 	// implement your own stuff
 	//
 
-	return 10;
+	return mParam_D;
 }
 
 //
@@ -132,7 +138,10 @@ void GRAPH_MANAGER::increase_CurveNumber()
 	//
 	// implement your own stuff
 	//
-	mNumCurves += 1;
+	mNumCurves += 10;
+	if (mNumCurves > MAX_NUM_CURVES)
+		mNumCurves = MAX_NUM_CURVES;
+
 	setCurves_Random_C();
 
 }
@@ -147,6 +156,11 @@ void GRAPH_MANAGER::decrease_CurveNumber()
 	//
 	// implement your own stuff
 	//
+	mNumCurves -= 10;
+	if (mNumCurves < MIN_NUM_CURVES)
+		mNumCurves = MIN_NUM_CURVES;
+
+	setCurves_Random_C();
 }
 
 //
@@ -157,6 +171,9 @@ void GRAPH_MANAGER::setNumCurves(int num) {
 	//
 	// implement your own stuff
 	//
+	mNumCurves = num;
+
+	setCurves_Random_C();
 }
 
 //
@@ -168,7 +185,7 @@ int GRAPH_MANAGER::getNumCurves() const
 	//
 	// implement your own stuff
 	//
-	return 1;
+	return mNumCurves;
 }
 
 //
@@ -181,7 +198,7 @@ const CURVE_FUNCTION& GRAPH_MANAGER::getCurve(int curve_index) const
 	//
 	// implement your own stuff
 	//
-	return mCurves[0];
+	return mCurves[curve_index];
 }
 
 //
@@ -208,6 +225,8 @@ void GRAPH_MANAGER::decrease_NumOfSamplePoints(int delta_num)
 	//
 	// implement your own stuff
 	//
+	mNumOfSamplePoints -= delta_num;
+	setCurves_NumOfSamplePoints(mNumOfSamplePoints);
 }
 
 //
@@ -223,7 +242,7 @@ void GRAPH_MANAGER::setCurves_NumOfSamplePoints(int num)
 		//
 		// implement your own stuff
 		//
-		mCurves[i].setNumOfSamplePoints(100);
+		mCurves[i].setNumOfSamplePoints(num);
 	}
 }
 
@@ -243,6 +262,7 @@ void GRAPH_MANAGER::setCurves_Random_C()
 		//
 		// implement your own stuff
 		//
+		mCurves[i].setRandom_C(mC_LowerBound, mC_UpperBound);
 	}
 }
 
@@ -256,7 +276,7 @@ double GRAPH_MANAGER::getC_Average() const
 	//
 	double v = 0;
 	for (int i = 0; i < mNumCurves; ++i) {
-	
+		v += mCurves[i].getC();
 	}
 	v = v / mNumCurves;
 	return v;
@@ -271,6 +291,10 @@ double GRAPH_MANAGER::getC_Lowest() const
 	//
 	// implement your own stuff
 	//
+	for (int i = 0; i < mNumCurves; ++i) {
+		if (mCurves[i].getC() < v)
+			v = mCurves[i].getC();
+	}
 	return v;
 }
 
@@ -283,5 +307,9 @@ double GRAPH_MANAGER::getC_Largest() const
 	//
 	// implement your own stuff
 	//
+	for (int i = 0; i < mNumCurves; ++i) {
+		if (mCurves[i].getC() > v)
+			v = mCurves[i].getC();
+	}
 	return v;
 }

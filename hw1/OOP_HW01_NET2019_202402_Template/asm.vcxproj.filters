@@ -13,9 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
     </Filter>
-    <Filter Include="00_StudentWork">
-      <UniqueIdentifier>{810fe5b0-843c-4f3e-9364-02c2f90e1602}</UniqueIdentifier>
-    </Filter>
     <Filter Include="openGLbasic">
       <UniqueIdentifier>{947d4824-a0bc-4c3e-b269-cac8a25ac7ef}</UniqueIdentifier>
     </Filter>
@@ -54,6 +51,9 @@
     </Filter>
     <Filter Include="textureManager">
       <UniqueIdentifier>{8f3071b8-d965-4c0d-985b-8603b94f2efc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="00_StudentWork">
+      <UniqueIdentifier>{810fe5b0-843c-4f3e-9364-02c2f90e1602}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

@@ -6,9 +6,9 @@
 // Date: 2014/10/09
 //
 //------------------------------
-// Student Name:
-// Student ID:
-// Student Email:
+// Student Name: §dªl¿Î
+// Student ID: 111652040
+// Student Email: jimmwu0229.sc11@nycu.edu.tw
 // Program description:
 //
 //------------------------------

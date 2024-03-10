@@ -8,6 +8,8 @@
 // Date: 2024/03/03
 //
 #include "mySystem_Curve.h"
+#include <cmath>
+#include <cstdlib>
 #include <iostream>
 
 using namespace std;
@@ -41,7 +43,7 @@ void CURVE_FUNCTION::setCurveType(CURVE_TYPE type)
 	// implement your own stuff
 	//
 
-	mCurveType = CURVE_TYPE_COSINE;
+	mCurveType = type;
 }
 
 // increase parameter b
@@ -63,6 +65,7 @@ void CURVE_FUNCTION::setC(double c)
 	//
 	// implement your own stuff
 	//
+	this->c = c;
 }
 
 // set the value to parameter d
@@ -71,6 +74,7 @@ void CURVE_FUNCTION::setD(double d)
 	//
 	// implement your own stuff
 	//
+	this->d = d;
 }
 
 // ask for input
@@ -89,6 +93,8 @@ void CURVE_FUNCTION::set_IntervalOfX(double min_X, int max_X)
 	//
 	// implement your own stuff
 	//
+	xMin = min_X;
+	xMax = max_X;
 }
 
 //
@@ -100,8 +106,8 @@ void CURVE_FUNCTION::getIntervalOfX(double& xMin, double& xMax) const
 	//
 	// implement your own stuff
 	//
-	xMin = -10;
-	xMax = 10;
+	xMin = this->xMin;;
+	xMax = this->xMax;
 
 }
 
@@ -113,7 +119,7 @@ int CURVE_FUNCTION::getNumOfSamples() const
 	//
 	// implement your own stuff
 	//
-	return 4;
+	return mNumSamples;
 }
 
 //
@@ -126,7 +132,7 @@ void CURVE_FUNCTION::setNumOfSamplePoints(int num)
 	// implement your own stuff
 	//
 
-	mNumSamples = 1 + num / 2;
+	mNumSamples = num;
 }
 
 //
@@ -140,13 +146,13 @@ double CURVE_FUNCTION::getValue(double x) const
 	double y = 0;
 	switch (mCurveType) {
 	case CURVE_TYPE_EXPONENTIAL:
-		y = sin(4*x);
+		y = (x / 2.5) / 10 - 1 + (c * sin(4 * d * x)) * exp(-(x / 2.5));
 		break;
 	case CURVE_TYPE_COSINE:
-		y = c * x;
+		y = c * x - d * x * cos(x);
 		break;
 	case CURVE_TYPE_QUADRATIC:
-		y = 2;
+		y = x*x + c * x + d;
 		break;
 	}
 
@@ -159,7 +165,7 @@ double CURVE_FUNCTION::getValue(double x) const
 //
 void CURVE_FUNCTION::setRandom_C(double u0, double u1)
 {
-
+	c = (u1 - u0) * rand() / (RAND_MAX + 1.0) + u0;
 
 }
 
@@ -169,7 +175,7 @@ void CURVE_FUNCTION::setRandom_C(double u0, double u1)
 //
 void CURVE_FUNCTION::setRandom_D(double u0, double u1)
 {
-
+	d = (u1 - u0) * rand() / (RAND_MAX + 1.0) + u0;
 }
 
 //
@@ -186,10 +192,12 @@ void CURVE_FUNCTION::getBoundaryPoint(int point_index, double& x, double& y) con
 	y = -10;
 	switch (point_index) {
 	case 0:
+		x = xMin;
+		y = getValue(xMin);
 		break;
 	case 1:
 		x = xMax;
-		y = 0;
+		y = getValue(xMax);
 		break;
 	};
 }
@@ -207,4 +215,19 @@ void CURVE_FUNCTION::getExtremePoints(vector<double>& X, vector<double>& Y) cons
 	//
 	// implement your own stuff
 	//
+	int numSamples = mNumSamples;
+	vector<double> y; 
+	vector<double> x;
+	y.resize(3), x.resize(3);
+	for (int i = 1; i < numSamples - 1; ++i) {
+		for (int j = -1; j <= 1; j++) {
+			x[j+1] = xMin + ((i + j) / ((double)numSamples - 1)) * (xMax - xMin);
+			y[j + 1] = getValue(x[j + 1]);
+		}
+		if (y[1] > y[0] && y[1] > y[2])
+			X.push_back(x[1]), Y.push_back(y[1]);
+		if (y[1] < y[0] && y[1] < y[2])
+			X.push_back(x[1]), Y.push_back(y[1]);
+	}
+
 }

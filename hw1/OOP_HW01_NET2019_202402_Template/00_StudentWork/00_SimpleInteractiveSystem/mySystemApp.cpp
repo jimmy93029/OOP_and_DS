@@ -11,15 +11,15 @@
 
 using namespace std;
 
-#define STUDENT_INFO "Name:XYZ   ID:0123456789"
+#define STUDENT_INFO "Name:§dªl¿Î   ID:111652040"
 
 void MY_SYSTEM_APP::showMyStudentInfo_2024( ) const
 {
 	cout << "*******************************" << endl;
-    cout << "Date:2024/03/03" << endl;
-	cout << "Student ID:\t" << endl;
-	cout << "Student Name:\t" << endl;
-	cout << "Student Email:\t" << endl;
+    cout << "Date:2024/03/09" << endl;
+	cout << "Student ID: 111652040\t" << endl;
+	cout << "Student Name: §dªl¿Î\t" << endl;
+	cout << "Student Email: jimmywu0229.sc11@nycu.edu.tw\t" << endl;
 	cout << "*******************************" << endl;
 }
 

@@ -1,7 +1,7 @@
 //********************************************
-// Student Name			:
-// Student ID			:
-// Student Email Address:
+// Student Name			:  §dªl¿Î
+// Student ID			: 111652040
+// Student Email Address: jimmywu0229.sc11@nycu.edu.tw
 //********************************************
 //
 // Instructor: Sai-Keung Wong
