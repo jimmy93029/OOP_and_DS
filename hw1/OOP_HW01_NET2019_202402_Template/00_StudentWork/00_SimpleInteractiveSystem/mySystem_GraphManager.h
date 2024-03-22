@@ -16,7 +16,7 @@
 #include "mySystem_Curve.h"
 using std::vector;
 
-#define MAX_NUM_CURVES 100			// maximum number of curves
+#define MAX_NUM_CURVES 1000			// maximum number of curves
 #define MIN_NUM_CURVES 1			// minimum number of curves
 
 /*

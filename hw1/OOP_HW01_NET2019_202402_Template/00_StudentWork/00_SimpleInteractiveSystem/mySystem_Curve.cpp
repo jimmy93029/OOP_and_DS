@@ -39,10 +39,6 @@ CURVE_FUNCTION::CURVE_FUNCTION()
 //
 void CURVE_FUNCTION::setCurveType(CURVE_TYPE type)
 {
-	//
-	// implement your own stuff
-	//
-
 	mCurveType = type;
 }
 
@@ -62,18 +58,12 @@ void CURVE_FUNCTION::decrease(double dv)
 // set the value to parameter c
 void CURVE_FUNCTION::setC(double c)
 {
-	//
-	// implement your own stuff
-	//
 	this->c = c;
 }
 
 // set the value to parameter d
 void CURVE_FUNCTION::setD(double d)
 {
-	//
-	// implement your own stuff
-	//
 	this->d = d;
 }
 
@@ -90,9 +80,6 @@ void CURVE_FUNCTION::askForInput()
 //
 void CURVE_FUNCTION::set_IntervalOfX(double min_X, int max_X)
 {
-	//
-	// implement your own stuff
-	//
 	xMin = min_X;
 	xMax = max_X;
 }
@@ -103,9 +90,6 @@ void CURVE_FUNCTION::set_IntervalOfX(double min_X, int max_X)
 // xMax <- this->xMax
 void CURVE_FUNCTION::getIntervalOfX(double& xMin, double& xMax) const
 {
-	//
-	// implement your own stuff
-	//
 	xMin = this->xMin;;
 	xMax = this->xMax;
 
@@ -116,9 +100,6 @@ void CURVE_FUNCTION::getIntervalOfX(double& xMin, double& xMax) const
 //
 int CURVE_FUNCTION::getNumOfSamples() const
 {
-	//
-	// implement your own stuff
-	//
 	return mNumSamples;
 }
 
@@ -128,9 +109,6 @@ int CURVE_FUNCTION::getNumOfSamples() const
 //
 void CURVE_FUNCTION::setNumOfSamplePoints(int num)
 {
-	//
-	// implement your own stuff
-	//
 
 	mNumSamples = num;
 }
@@ -140,13 +118,10 @@ void CURVE_FUNCTION::setNumOfSamplePoints(int num)
 //
 double CURVE_FUNCTION::getValue(double x) const
 {
-	//
-	// implement your own stuff
-	//
 	double y = 0;
 	switch (mCurveType) {
 	case CURVE_TYPE_EXPONENTIAL:
-		y = (x / 2.5) / 10 - 1 + (c * sin(4 * d * x)) * exp(-(x / 2.5));
+		y = (x / 2.5) / 10 - 1 + (c + sin(4 * d * x)) * exp(-(x / 2.5));
 		break;
 	case CURVE_TYPE_COSINE:
 		y = c * x - d * x * cos(x);
@@ -176,6 +151,7 @@ void CURVE_FUNCTION::setRandom_C(double u0, double u1)
 void CURVE_FUNCTION::setRandom_D(double u0, double u1)
 {
 	d = (u1 - u0) * rand() / (RAND_MAX + 1.0) + u0;
+
 }
 
 //
@@ -185,9 +161,6 @@ void CURVE_FUNCTION::setRandom_D(double u0, double u1)
 // 
 void CURVE_FUNCTION::getBoundaryPoint(int point_index, double& x, double& y) const
 {
-	//
-	// implement your own stuff
-	//
 	x = xMin;
 	y = -10;
 	switch (point_index) {
@@ -212,9 +185,6 @@ void CURVE_FUNCTION::getExtremePoints(vector<double>& X, vector<double>& Y) cons
 	X.clear();
 	Y.clear();
 
-	//
-	// implement your own stuff
-	//
 	int numSamples = mNumSamples;
 	vector<double> y; 
 	vector<double> x;

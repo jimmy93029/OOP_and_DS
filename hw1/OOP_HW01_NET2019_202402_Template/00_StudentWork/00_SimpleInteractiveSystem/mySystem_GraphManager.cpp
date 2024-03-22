@@ -97,6 +97,8 @@ void GRAPH_MANAGER::increase_Param_D()
 	// implement your own stuff
 	//
 	mParam_D = mParam_D + mDelta_D;
+	if (mParam_D > mD_UpperBound)
+		mParam_D = mD_UpperBound;
 	
 	setCurves_D(mParam_D);
 }
@@ -112,6 +114,8 @@ void GRAPH_MANAGER::decrease_Param_D()
 	// implement your own stuff
 	//
 	mParam_D = mParam_D - mDelta_D;
+	if (mParam_D < mD_LowerBound)
+		mParam_D = mD_LowerBound;
 
 	setCurves_D(mParam_D);
 }
@@ -138,7 +142,7 @@ void GRAPH_MANAGER::increase_CurveNumber()
 	//
 	// implement your own stuff
 	//
-	mNumCurves += 10;
+	mNumCurves += 20;
 	if (mNumCurves > MAX_NUM_CURVES)
 		mNumCurves = MAX_NUM_CURVES;
 
@@ -156,7 +160,7 @@ void GRAPH_MANAGER::decrease_CurveNumber()
 	//
 	// implement your own stuff
 	//
-	mNumCurves -= 10;
+	mNumCurves -= 20;
 	if (mNumCurves < MIN_NUM_CURVES)
 		mNumCurves = MIN_NUM_CURVES;
 
@@ -212,6 +216,8 @@ void GRAPH_MANAGER::increase_NumOfSamplePoints(int delta_num)
 	// implement your own stuff
 	//
 	mNumOfSamplePoints += delta_num;
+	if (mNumOfSamplePoints > MAX_NUM_SAMPLE_POINTS)
+		mNumOfSamplePoints = MAX_NUM_SAMPLE_POINTS;
 	setCurves_NumOfSamplePoints(mNumOfSamplePoints);
 }
 
@@ -226,6 +232,8 @@ void GRAPH_MANAGER::decrease_NumOfSamplePoints(int delta_num)
 	// implement your own stuff
 	//
 	mNumOfSamplePoints -= delta_num;
+	if (mNumOfSamplePoints < MIN_NUM_SAMPLE_POINTS)
+		mNumOfSamplePoints = MIN_NUM_SAMPLE_POINTS;
 	setCurves_NumOfSamplePoints(mNumOfSamplePoints);
 }
 
