@@ -121,7 +121,8 @@ double CURVE_FUNCTION::getValue(double x) const
 	double y = 0;
 	switch (mCurveType) {
 	case CURVE_TYPE_EXPONENTIAL:
-		y = (x / 2.5) / 10 - 1 + (c + sin(4 * d * x)) * exp(-(x / 2.5));
+		double w = x / 2.5;
+		y = w / 10 - 1 + (c + sin(4 * d * w)) * exp(-w);
 		break;
 	case CURVE_TYPE_COSINE:
 		y = c * x - d * x * cos(x);
