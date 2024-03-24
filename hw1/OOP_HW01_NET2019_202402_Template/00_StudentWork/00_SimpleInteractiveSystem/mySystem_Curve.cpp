@@ -119,9 +119,9 @@ void CURVE_FUNCTION::setNumOfSamplePoints(int num)
 double CURVE_FUNCTION::getValue(double x) const
 {
 	double y = 0;
+	double w = x / 2.5;
 	switch (mCurveType) {
 	case CURVE_TYPE_EXPONENTIAL:
-		double w = x / 2.5;
 		y = w / 10 - 1 + (c + sin(4 * d * w)) * exp(-w);
 		break;
 	case CURVE_TYPE_COSINE:
