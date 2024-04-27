@@ -139,10 +139,10 @@ void MONTE_CARLO_SYSTEM::getXInterval( double &minX, double &maxX ) const
 {
 
     // fill/modify your own stuff
-    //minX = mMinX;
-    //maxX = mMaxX;
-    minX = 1;
-    maxX = 10;
+    minX = mMinX;
+    maxX = mMaxX;
+    // minX = 1;
+    // maxX = 10;
 }
 
 /*
@@ -164,7 +164,7 @@ void MONTE_CARLO_SYSTEM::computeSamples( )
         // fill/modify your own stuff
         double x = getRandDouble( mMinX, mMaxX );
         mX[ i ] = x;
-        mY[ i ] = 1.5;
+        mY[ i ] = 1.5;           // How to get the function output
     }
 }
 
@@ -190,7 +190,8 @@ void MONTE_CARLO_SYSTEM::computeArea( )
     // fill/modify your own stuff
     int counter = 0;
     for ( int i = 0; i < mNumSamples; ++i ) {
-
+        if (isInsideArea(mX[i], mY[i]))
+            counter++;
     }
 
     double ratio = (counter/(double)mNumSamples);
@@ -214,9 +215,9 @@ Return the number of sample points.
 int MONTE_CARLO_SYSTEM::getNumSamples( ) const
 {
     //Return the number of sample points
-    //return mNumSamples;
+    return mNumSamples;
     // fill/modify your own stuff
-    return mNumSamples / 10;
+    // return mNumSamples / 10;
 }
 
 /*
@@ -226,8 +227,8 @@ void MONTE_CARLO_SYSTEM::getSample(int sampleIndex, double &x, double &y ) const
 {
     // fill/modify your own stuff
     x = mX[ sampleIndex ];
-    //y = mY[ sampleIndex ];
-    y = 10;
+    y = mY[ sampleIndex ];
+    // y = 10;
 
 }
 
@@ -277,9 +278,11 @@ Otherwise, (x,y) does not lay inside the area.
 bool MONTE_CARLO_SYSTEM::isInsideArea( double x, double y ) const
 {
     double realY = getValue( x );
-    if ( realY > 0.0 && y > 0.0 && y <= realY ) return true;
     //
     // fill/modify your own stuff
     //
+    if (realY >= 0.0 && y >= 0.0 && y <= realY ) return true;
+    if (realY <= 0.0 && y <= 0.0 && y >= realY) return true;
+
     return false;
 }

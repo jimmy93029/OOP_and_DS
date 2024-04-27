@@ -193,6 +193,26 @@ void SIMPLE_PAINTER::clickAt(double x, double y)
     //
     // fill/modify your own stuff
     //
+    for (int j = -s; j <= s; ++j) {
+        for (int i = -s; i <= s; ++i) {
+            double rx = i;
+            double ry = j;
+            double w = 1.0; // weight 
+            double R2 = rx * rx + ry * ry;
+            if (R2 > 4.0 * S2) continue; // this pixel is too far. ignore it 
+            if (R2 > S2 / 2.0) {
+                // pixel is a bit far but not too far 
+                double k = S2 / 2.0 - R2;
+                double d = 0.003;   // magic number 
+                w = pow(2.718281828, d * k); // use the guassian function to compute weight w 
+            }
+            else {
+                w = 1.0; // pixel is near to the center (x,y). Set weight to a high value; here it's one. 
+            }
+            // 
+            drawAt(x + i, y + j, w * color, w * mTransparency);
+        }
+    }
 }
 
 /*
@@ -203,16 +223,17 @@ Make sure that the color component is inside [0,1].
 
 new color = current_color*(1.0-w*w) + w*w*color;
 */
-void SIMPLE_PAINTER::drawAt(int x, int y, const vector3 &color, double w )
+void SIMPLE_PAINTER::drawAt(int x, int y, const vector3& color, double w)
 {
-    if ( x < 0 ) return;
-    if ( x > mNX ) return;
-    if ( y < 0 ) return;
-    if ( y > mNY ) return;
+    if (x < 0) return;
+    if (x > mNX) return;
+    if (y < 0) return;
+    if (y > mNY) return;
     //
-    int index = computeCanvasIndex(x, y, mNX, mNY );
+    int index = computeCanvasIndex(x, y, mNX, mNY);
 
     //
     // fill/modify your own stuff
     //
+    mCanvas[index] = mCanvas[index] * (1.0 - w * w) + w * w * color;
 }

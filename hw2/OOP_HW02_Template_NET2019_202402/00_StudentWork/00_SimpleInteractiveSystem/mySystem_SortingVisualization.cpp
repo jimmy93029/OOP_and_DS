@@ -114,6 +114,10 @@ void SORTING_VISUALIZATION::checkAndSwapTwoElements( int index )
     //
     // fill/modify your own stuff
     //
+    if (v1 < v0) {
+        mNumbers[index] = v1;
+        mNumbers[index + 1] = v0;
+    }
 }
 
 /*
@@ -128,13 +132,13 @@ void SORTING_VISUALIZATION::processOneSwapStep( )
     // fill/modify your own stuff
     //
 
-    //checkAndSwapTwoElements( mCurrentIndex );
+    checkAndSwapTwoElements( mCurrentIndex );
 
     //
     // fill/modify your own stuff
     //
-
-
+    if (mCurrentIndex + 1 < mNumElements - 1)
+       mCurrentIndex++;
 }
 
 /*
@@ -153,8 +157,8 @@ int SORTING_VISUALIZATION::getMaxNonHandledElementIndex( ) const
     //
     // fill/modify your own stuff
     //
-    //return mMaxNonHandledElementIndex;
-    return 0;
+    return mMaxNonHandledElementIndex;
+    // return 0;
 }
 
 /*
@@ -166,8 +170,8 @@ int SORTING_VISUALIZATION::getNumOfElements( ) const
     // fill/modify your own stuff
     //
     //Return the number of elements
-    //return mNumElements;
-    return mNumElements/2;
+    return mNumElements;
+    // return mNumElements/2;
 }
 
 /*
@@ -178,6 +182,6 @@ int SORTING_VISUALIZATION::getElement( int elementIndex ) const
     //
     // fill/modify your own stuff
     //
-    //return mNumbers[ elementIndex ];
-    return 1;
+    return mNumbers[ elementIndex ];
+    // return 1;
 }
