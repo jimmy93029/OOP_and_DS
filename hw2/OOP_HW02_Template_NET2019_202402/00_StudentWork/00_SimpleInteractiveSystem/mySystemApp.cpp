@@ -52,7 +52,7 @@ MY_SYSTEM_APP::MY_SYSTEM_APP( )
     glutSetWindowTitle(title.data( ));
 
 	//mSystemType = SYSTEM_TYPE_GALAXY_SYSTEM;
-    mSystemType = SYSTEM_TYPE_MONTE_CARLO_SIMULATION;
+    mSystemType = SYSTEM_TYPE_MONTE_CARLO_SIMULATION;  
     mColorPalette = new COLOR_PALETTE;
     mCamera->setZoom(-67);
 }

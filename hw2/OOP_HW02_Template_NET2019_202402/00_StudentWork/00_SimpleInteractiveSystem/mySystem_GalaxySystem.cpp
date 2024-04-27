@@ -67,15 +67,25 @@ void GALAXY_SYSTEM::generateObjects( )
     // fill/modify your own stuff
     // You can remove the following lines.
     
-    mAlive.resize(mNumOfObjs); // 
+    mAlive.resize(mNumOfObjs, true); // 
+
     mX.resize( mNumOfObjs );
     mY.resize( mNumOfObjs );
     mR.resize( mNumOfObjs );
     mMass.resize( mNumOfObjs );
-    mVx.resize( mNumOfObjs );
-    mVy.resize( mNumOfObjs );
-    mFx.resize( mNumOfObjs );
-    mFy.resize( mNumOfObjs );
+    mVx.resize(mNumOfObjs);
+    mVy.resize(mNumOfObjs);
+    mFx.resize(mNumOfObjs);
+    mFy.resize(mNumOfObjs);
+
+    for (int i = 0; i < mNumOfObjs; i++) {
+        mX[i] = getRandDouble(-mSpaceSize / 2, mSpaceSize / 2);
+        mY[i] = getRandDouble(-mSpaceSize / 2, mSpaceSize / 2); 
+        mR[i] = getRandDouble(mMinR, mMaxR);
+        mMass[i] = mR[i];  
+        mVx[i] = getRandDouble(-100.0, 100);
+        mVy[i] = getRandDouble(-100.0, 100);
+    }
     
 }
 
@@ -128,6 +138,8 @@ void GALAXY_SYSTEM::askForInput( )
     cout << "GALAXY_SYSTEM::askForInput" << endl;
     cout << "Key usage:" << endl;
     // fill/modify your own stuff
+
+    // ################################ we need to add something ? #######
 }
 
 /*
@@ -155,15 +167,17 @@ Return the alive flag.
 */
 bool GALAXY_SYSTEM::getObjInfo( int objIndex, double &x, double &y, double &r ) const
 {
-    /*
+
     x = mX[objIndex];
     y = mY[objIndex];
     r = mR[objIndex];
-    */
+
     // fill/modify your own stuff
+    /*
     x = 1;
     y = 2;
     r = 4;
+    */
     return mAlive[objIndex];
 }
 
@@ -185,11 +199,33 @@ For each pair of the objects
 void GALAXY_SYSTEM::mergeObjects( )
 {
     // fill/modify your own stuff
+    for (int i = 0; i < mNumOfObjs; i++) {
+        for (int j = 0; j < mNumOfObjs; j++) 
+        {
+            if ((i == j)|| (!mAlive[i]) || (!mAlive[j]))
+                continue;
+
+            double dist = pow((mX[i] - mX[j]), 2) + pow((mY[i] - mY[j]), 2);
+            double Rxy_square = pow(mR[i] + mR[j], 2);
+            double mergeV = (mMass[i] * mVx[i] + mMass[j] * mVx[j]) / (mMass[i] + mMass[j]);
+
+            if (dist < Rxy_square) {
+                if (mR[i] < mR[j]) {
+                    mAlive[i] = false;
+                    mVx[j] = mergeV;
+                }
+                else {
+                    mAlive[j] = false;
+                    mVx[i] = mergeV;
+                }
+            }
+        }
+    }
 }
+
 /*
 * Compute the number of active objects
 */
-
 void GALAXY_SYSTEM::computeNumberOfActiveObjects()
 {
     mActiveObjectNumber = 0;
@@ -209,6 +245,7 @@ void GALAXY_SYSTEM::computeForcesOfObjects()
     //
     for (int i = 0; i < mNumOfObjs; ++i) {
         // fill/modify your own stuff
+        
     }
 }
 
@@ -229,11 +266,10 @@ void GALAXY_SYSTEM::updatePositionsOfObjectsAndTails()
         //
         // fill your own stuff
         //
-        /*
+
         if (skipFrames == 0 || mNumFrames % skipFrames == 0) {
             mTails[i].add_to_front(mX[i], mY[i]);
         }
-        */
     }
 }
 /*
@@ -275,8 +311,8 @@ int GALAXY_SYSTEM::getTail_NumSamplePoints( int planet_index ) const
     //
     // fill/modify your own stuff
     //
-    //return mTails[planet_index].points.size();
-    return 0;
+    return mTails[planet_index].points.size();
+    // return 0;
 }
 
 //
@@ -289,5 +325,6 @@ COORD_2D GALAXY_SYSTEM::getTail_SamplePointCoords(
     //
     // fill/modify your own stuff
     //
-    return COORD_2D(0, 0);
+    return mTails[planet_index].points[sample_point_index];
+    // return COORD_2D(0, 0);
 }
