@@ -2,7 +2,11 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
+<<<<<<< HEAD
       <FullPath>\\Mac\Home\Downloads\hw2\hw2\OOP_HW02_Template_NET2019_202402\Release\SelfMotivatedSystem.exe</FullPath>
+=======
+      <FullPath>C:\programming\coding\計算機概論\data_structure_and_OOP\hw2\OOP_HW02_Template_NET2019_202402\Release\SelfMotivatedSystem.exe</FullPath>
+>>>>>>> be9cb2df97d921a1a27a556b06a6a29b229839d8
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />
