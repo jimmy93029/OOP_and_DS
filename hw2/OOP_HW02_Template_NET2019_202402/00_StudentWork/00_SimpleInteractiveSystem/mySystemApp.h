@@ -1,7 +1,7 @@
 //********************************************
-// Student Name			:
-// Student ID			:
-// Student Email Address:
+// Student Name			: jimmywu
+// Student ID			: 111652040
+// Student Email Address: jimmywu0229.sc11@nycu.edu.tw
 //********************************************
 //
 // Instructor: Sai-Keung Wong
@@ -35,7 +35,7 @@
     
 /////////////////////////////////////////////
 
-#define STUDENT_INFO "Name:§dªl¿Î   ID:111652040"
+#define STUDENT_INFO "Name:jimmywu  ID:111652040"
 
 using namespace ns_opengl;
 class MY_SYSTEM_APP : public FREE_CANVAS_2D

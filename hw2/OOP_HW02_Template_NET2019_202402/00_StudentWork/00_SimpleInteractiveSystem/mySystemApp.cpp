@@ -17,7 +17,7 @@ void MY_SYSTEM_APP::showStudentInfo_2024( ) const
 	cout << "*******************************" << endl;
     cout << "Date:2024/04/27" << endl;
 	cout << "Student ID 111652040:\t" << endl;
-	cout << "Student Name: §dªl¿Î\t" << endl;
+	cout << "Student Name: jimmywu\t" << endl;
 	cout << "Student Email: jimmywu0229.sc11@nycu.edu.tw\t" << endl;
 	cout << "*******************************" << endl;
     cout << "Spring 2024." << endl;
@@ -52,7 +52,7 @@ MY_SYSTEM_APP::MY_SYSTEM_APP( )
     glutSetWindowTitle(title.data( ));
 
 	//mSystemType = SYSTEM_TYPE_GALAXY_SYSTEM;
-    mSystemType = SYSTEM_TYPE_MONTE_CARLO_SIMULATION;
+    mSystemType = SYSTEM_TYPE_MONTE_CARLO_SIMULATION;  
     mColorPalette = new COLOR_PALETTE;
     mCamera->setZoom(-67);
 }

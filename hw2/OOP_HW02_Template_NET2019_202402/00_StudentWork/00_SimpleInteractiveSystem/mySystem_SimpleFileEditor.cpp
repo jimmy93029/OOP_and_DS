@@ -52,11 +52,12 @@ void SIMPLE_FILE_EDITOR::readFile( )
     //
     // fill/modify your own stuff
     //
-    /*
+
     while ( inFile ) {
         getline(inFile, inputString );
+        storeOneRowToBitmap(inputString);
     }
-    */
+
     inFile.close( );
 }
 
@@ -73,10 +74,17 @@ Otherwise, the value of the element is set to (int) inputString[i].
 void SIMPLE_FILE_EDITOR::storeOneRowToBitmap( const string &inputString )
 {
     if (mCurY>= mNY) return;
-    int index = mCurX + mCurY*mNX;
+    int index = mCurX + mCurY * mNX;;
     //
     // fill/modify your own stuff
     //
+    for (mCurX = 0; mCurX < mNX; mCurX++) {
+        index = mCurX + mCurY * mNX;
+        if (inputString[mCurX] == ' ')
+            mBitmap[index] = 0;
+        else
+            mBitmap[index] = inputString[mCurX] - '0';   // well, I don't know the context of File_name actually
+    }
     ++mCurY;
 }
 
