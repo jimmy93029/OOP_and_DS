@@ -1,7 +1,7 @@
 //********************************************
-// Student Name			:
-// Student ID			:
-// Student Email Address:
+// Student Name			: jimmywu
+// Student ID			: 111652040
+// Student Email Address: jimmywu0229.sc11@nycu.edu.tw
 //********************************************
 //
 //
@@ -30,8 +30,8 @@ class Param {
 public: 
     static int GRAPH_MAX_NUM_NODES;
     static int GRAPH_MAX_NUM_EDGES;
+    static double PI;
 };
-
 
 
 class GRAPH_SYSTEM : public BASE_SYSTEM {
@@ -53,6 +53,11 @@ protected:
     //
     // Implement your own stuff
     //
+    void initMemoryPool();
+    GRAPH_NODE* getFreeNode();
+    GRAPH_EDGE* getFreeEdge();
+    void deleteEdge(int EdgeID);
+
 public:
     GRAPH_SYSTEM( );
     void update( );
@@ -83,6 +88,22 @@ protected:
     GRAPH_NODE *mPassiveSelectedNode;
     //
     bool mFlgAutoNodeDeletion;
+    //
+    GRAPH_NODE* mNodeArr_Pool;
+    GRAPH_EDGE* mEdgeArr_Pool;
+    //
+    int* mActiveNodeArr;
+    int mCurNumOfActiveNodes;
+    int* mActiveEdgeArr;
+    int mCurNumOfActiveEdges;
+    //
+    int* mFreeNodeArr;
+    int mCurNumOfFreeNodes;
+    int* mFreeEdgeArr;
+    int mCurNumOfFreeEdges;
+    //
+    bool mode5;
+    int Nmode5;
 };
 
 #endif

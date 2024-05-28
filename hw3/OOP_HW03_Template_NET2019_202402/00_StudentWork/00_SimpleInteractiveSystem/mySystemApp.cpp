@@ -16,9 +16,9 @@ void MY_SYSTEM_APP::showStudentInfo_2024( ) const
 {
 	cout << "*******************************" << endl;
 	cout << "Date:2024/05/01\t" << endl;
-	cout << "Student ID:\t" << endl;
-	cout << "Student Name:\t" << endl;
-	cout << "Student Email:\t" << endl;
+	cout << "Student ID: 111652040\t" << endl;
+	cout << "Student Name: jimmywu\t" << endl;
+	cout << "Student Email: jimmywu0229.sc11@nycu.edu.tw\t" << endl;
 	cout << "*******************************" << endl;
 }
 

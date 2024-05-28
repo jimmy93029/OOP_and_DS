@@ -1,7 +1,7 @@
 //********************************************
-// Student Name			:
-// Student ID			:
-// Student Email Address:
+// Student Name			: jimmywu
+// Student ID			: 111652040
+// Student Email Address: jimmywu0229.sc11@nycu.edu.tw
 //********************************************
 //
 //
@@ -19,7 +19,7 @@
 
 using namespace std;
 
-#define cn_StudentInfo "Student Name:xyz. ID:012345678. Spring 2024"
+#define cn_StudentInfo "Student Name: jimmywu. ID: 111652040. Spring 2024"
 
 void MY_SYSTEM_APP::askForInput( )
 {

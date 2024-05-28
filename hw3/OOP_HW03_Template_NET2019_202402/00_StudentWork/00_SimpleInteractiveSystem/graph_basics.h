@@ -17,6 +17,7 @@
 #include <vector>
 using std::vector;
 
+
 class GRAPH_NODE {
 public:
     GRAPH_NODE( ) {
