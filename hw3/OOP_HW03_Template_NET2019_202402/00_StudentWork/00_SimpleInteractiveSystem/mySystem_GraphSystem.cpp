@@ -504,6 +504,7 @@ void GRAPH_SYSTEM::handleKeyPressedEvent( unsigned char key )
         if (mode5) {
             Nmode5 = (Nmode5 == 3) ? Nmode5 : Nmode5 - 1;
             createRandomGraph_DoubleCircles(Nmode5);
+            mSelectedNode = 0;
         }
         break;
     case '>':
